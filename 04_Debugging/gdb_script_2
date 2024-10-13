@@ -1,0 +1,13 @@
+
+set pagination off
+set $gdbi = 0
+break range.c:7 if (27 < ++$gdbi && $gdbi < 36)
+command 1
+        echo @@@
+        printf "%i %i %i %i\n", start, stop, step, i
+        continue
+end
+
+set args -100 100 3 > /dev/null
+run
+quit
