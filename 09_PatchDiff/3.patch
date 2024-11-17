@@ -1,0 +1,32 @@
+--- prog_temp2.c	2024-11-17 13:12:42.116975653 +0300
++++ prog1.c	2024-11-17 13:14:38.994371014 +0300
+@@ -111,7 +111,6 @@
+ }
+ 
+ void create_way(char **field, int N, int M) {
+-  srand(time(NULL));
+   while (1) {
+     for (int i = 1; i < N - 1; ++i) {
+       for (int j = 1; j < M - 1; ++j) {
+@@ -129,15 +128,16 @@
+ }
+ 
+ int main(int argc, char *argv[]) {
+-  if (argc != 3) {
++  if (argc != 4) {
+     return 0;
+   }
+-  if (strlen(argv[1]) != 2) {
++  srand(atoi(argv[1]));
++  if (strlen(argv[2]) != 2) {
+     return 0;
+   }
+-  empty = argv[1][0];
+-  wall = argv[1][1];
+-  int N = atoi(argv[2]), M = atoi(argv[2]);
++  empty = argv[2][0];
++  wall = argv[2][1];
++  int N = atoi(argv[3]), M = atoi(argv[3]);
+   if (N % 2 == 0 || N == 1) {
+     return 0;
+   }

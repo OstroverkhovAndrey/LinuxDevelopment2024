@@ -1,0 +1,40 @@
+--- prog_temp1.c	2024-11-17 13:02:51.422467635 +0300
++++ prog1.c	2024-11-17 13:11:04.353792608 +0300
+@@ -4,6 +4,8 @@
+ #include <string.h>
+ #include <time.h>
+ 
++char empty, wall;
++
+ char **create_labirint(int N, int M) {
+   char **field = (char **)calloc(N, sizeof(char *));
+   for (int i = 0; i < N; ++i) {
+@@ -29,7 +31,8 @@
+ void print_labirint(char **field, int N, int M) {
+   for (int i = 0; i < N; ++i) {
+     for (int j = 0; j < M; ++j) {
+-      printf("%c", field[i][j]);
++      char c = field[i][j] == '.' ? empty : wall;
++      printf("%c", c);
+     }
+     printf("\n");
+   }
+@@ -126,11 +129,15 @@
+ }
+ 
+ int main(int argc, char *argv[]) {
+-  if (argc != 2) {
++  if (argc != 3) {
+     return 0;
+   }
+-
+-  int N = atoi(argv[1]), M = atoi(argv[1]);
++  if (strlen(argv[1]) != 2) {
++    return 0;
++  }
++  empty = argv[1][0];
++  wall = argv[1][1];
++  int N = atoi(argv[2]), M = atoi(argv[2]);
+   if (N % 2 == 0 || N == 1) {
+     return 0;
+   }
